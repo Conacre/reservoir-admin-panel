@@ -1,0 +1,45 @@
+.scrollbar-outer {
+  position: fixed;
+  top: 165px;
+  left: 390px;
+  bottom: 20px;
+  width: 16px;
+  background: #1B1E27;
+  z-index: 2;
+}
+
+.scrollbar-track {
+  width: 8px;
+  height: 100%;
+  background: #23263a;
+  border-radius: 8px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.scrollbar-thumb {
+  width: 8px;
+  min-height: 4px;
+  background: #393d51;
+  border-radius: 8px;
+  position: absolute;
+  left: 0;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.scrollbar-thumb:hover {
+  background: #50546a;
+}
+
+.reservoir-list::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+.reservoir-list::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.reservoir-list {
+  scrollbar-width: none;
+}
