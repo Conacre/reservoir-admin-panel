@@ -15,22 +15,50 @@
   align-items: center;
   max-width: 100%;
   margin-bottom: 5px;
+  position: relative;
+}
+
+.search-btn {
+  width: 35px;
+  height: 35px;
+  background: #303549;
+  border: none;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -40px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.search-btn img {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
 }
 
 .reservoir-search {
-  flex: 1 1 auto;
-  padding: 1rem 1.2rem;
-  border-radius: 3px 3px 0 0 ;
-  border: none;
-  font-size: 16px;
+  width: 370px; /* вместо 371px */
+  height: 68px;
   background: #272A38;
   color: #fff;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
   font-family: inherit;
   outline: none;
+  padding-left: 60px;
+  padding-right: 1.2rem;
+  box-sizing: border-box;
 }
 
 .reservoir-search::placeholder {
-  color: #bfc2d4;
+  color: #FFFFFF;
+  margin: 16px auto 8px auto;
 }
 
 .reservoir-list {
@@ -39,11 +67,15 @@
   padding: 0;
   flex: 1 1 auto;
   overflow-y: auto;
-  max-height: 100%; /* добавьте это! */
+  max-height: 100%;
 }
 
 .reservoir-item {
-  padding: 1.1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 371px;
+  height: 45px;
   background: #272A38;
   color: #fff;
   margin-bottom: 5px;
@@ -53,6 +85,16 @@
   cursor: pointer;
   border: none;
   letter-spacing: 0.01em;
+  padding-left: 60px;
+  padding-right: 1.2rem;
+  box-sizing: border-box;
+}
+
+.lock-icon-right {
+  width: 27px;
+  height: 24px;
+  margin-left: 12px;
+  vertical-align: middle;
 }
 
 .reservoir-item:hover {

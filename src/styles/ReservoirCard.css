@@ -13,6 +13,220 @@
 }
 
 .reservoir-card-title {
+  width: 570px;
+  height: 68px;
+  background: #272a38;
+  border-radius: 4px;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  font-family: roboto, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-align: center;
+}
 
+.reservoir-card-img {
+  width: 273px;
+  height: 183px;
+  object-fit: contain;
+  align-self: center;
+  margin-top: 24px;
+  margin-bottom: 50px;
+}
+
+.info-field {
+  width: 485px;
+  height: 45px;
+  background: #272a38;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  font-family: roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 0;
+  margin: 5px auto 0 auto;
+  position: relative;
+  padding-left: 0;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.icons {
+  width: 45px;
+  height: 45px;
+  background: #303549;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+
+.units {
+  display: flex;
+  align-items: center;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: #fff;
+  margin-bottom: 5px;
+  margin: 20px 43px 5px;
+  gap: 10px;
+}
+
+.unit-one {
+  width: 94.5px;
+  height: 33px;
+  background: #0089FF;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.unit-two {
+  width: 33px;
+  height: 33px;
+  background: #303549;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px; 
+  margin: 5px auto 0 auto;
+}
+
+.save-btn {
+  width: 232px;
+  height: 45px;
+  background: #0089FF;
+  border-radius: 2px;
+  border: none;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 45px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancel-btn {
+  width: 249px;
+  height: 45px;
+  background: #303549;
+  border-radius: 2px;
+  border: none;
+  opacity: 0.5;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 45px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s,
+}
+
+.lock-status {
+  width: 485px;
+  height: 45px;
+  background: #272a38;
+  border-radius: 2px;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin: auto auto 0 auto;
+  padding-left: 0;
+  box-sizing: border-box;
+}
+
+.delete-btn {
+  width: 485px;
+  height: 45px;
+  background: #303549;
+  border-radius: 2px;
+  border: none;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 45px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  margin: 5px auto 17px auto;
+  display: block;
+  transition: background 0.2s;
+}
+
+.switch {
+  margin-left: auto;
+  position: relative;
+  display: inline-block;
+  width: 22px;    /* длина овала */
+  height: 14px;   /* высота по кружку */
+  transform: rotate(-180deg);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 2px;           /* чтобы овал был по центру относительно кружка */
+  width: 22px;
+  height: 10px;
+  background: #0089FF;
+  border: 1px solid #0270BB;
+  border-radius: 10px;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: -1px;         /* чтобы кружок был по левому краю овала */
+  top: -2px;          /* чтобы кружок был по центру относительно овала */
+  background-color: #fff;
+  border: 1px solid #D7E2F2;
+  border-radius: 50%;
+  transition: .4s;
+  box-sizing: border-box;
+}
+
+.switch input:checked + .slider {
+  background-color: #0089FF;
+  border: 1px solid #0270BB;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(9px); /* сдвиг кружка вправо */
 }
