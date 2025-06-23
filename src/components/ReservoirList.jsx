@@ -1,55 +1,57 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import '../styles/ReservoirList.css'
 
-const MOCK_RESERVOIRS = [
-  { id: 1, name: 'Резервуар 501' },
-  { id: 2, name: 'Резервуар 505' },
-  { id: 3, name: 'Резервуар 506' },
-  { id: 4, name: 'Резервуар 511' },
-  { id: 5, name: 'Резервуар 512' },
-  { id: 6, name: 'Резервуар 515' },
-  { id: 7, name: 'Резервуар 516' },
-]
-
-export function ReservoirList({ onListRef }) {
+export function ReservoirList({
+  listRef,
+  reservoirs,
+  loading,
+  error,
+  selected,
+  onSelect
+}) {
   const [query, setQuery] = useState('')
-  const [search, setSearch] = useState('')
-  const listRef = useRef(null)
 
-  useEffect(() => {
-    if (onListRef) onListRef(listRef)
-  }, [onListRef])
-
-  const filtered = MOCK_RESERVOIRS.filter(r =>
-    r.name.toLowerCase().includes(search.toLowerCase())
+  const filtered = reservoirs.filter(r =>
+    r.name.toLowerCase().includes(query.toLowerCase())
   )
-
-  const handleSearch = (e) => {
-    e.preventDefault()
-    setSearch(query)
-  }
 
   return (
     <div className="reservoir-list-container">
-      <form className="reservoir-search-form" onSubmit={handleSearch}>
+      <form
+        className="reservoir-search-form"
+        onSubmit={e => { e.preventDefault(); }}
+      >
         <input
           className="reservoir-search"
           type="text"
-          placeholder="Список резервуаров"
+          placeholder="Поиск по названию"
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
-        <button className="reservoir-search-btn" type="submit" aria-label="Поиск">
-          <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-            <circle cx="9" cy="9" r="7" stroke="#fff" strokeWidth="2"/>
-            <line x1="14.2" y1="14.2" x2="18" y2="18" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        </button>
       </form>
       <ul className="reservoir-list" ref={listRef}>
-        {filtered.length === 0 && <li className="empty">Ничего не найдено</li>}
-        {filtered.map(r => (
-          <li key={r.id} className="reservoir-item">{r.name}</li>
+        {loading && <li className="empty">Загрузка...</li>}
+        {error && <li className="empty">Ошибка: {error.message}</li>}
+        {!loading && !error && filtered.length === 0 && (
+          <li className="empty">Ничего не найдено</li>
+        )}
+        {!loading && !error && filtered.map(r => (
+          <li
+            key={r.id}
+            className={
+              'reservoir-item reservoir-item-btn' +
+              (selected && selected.id === r.id ? ' selected' : '')
+            }
+            tabIndex={0}
+            role="button"
+            aria-label={`Резервуар ${r.name}`}
+            onClick={() => onSelect(r)}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') onSelect(r)
+            }}
+          >
+            <b>{r.name}</b>
+          </li>
         ))}
       </ul>
     </div>
