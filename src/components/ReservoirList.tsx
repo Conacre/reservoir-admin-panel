@@ -1,7 +1,17 @@
 import { useState } from "react";
 import "../styles/ReservoirList.css";
 import lockiconImg from "../assets/lock-icon-2.svg";
-import searchImg from "../assets/Search.svg"; // добавьте импорт
+import searchImg from "../assets/Search.svg";
+import { Reservoir } from "../types";
+
+interface ReservoirListProps {
+  listRef: React.RefObject<HTMLUListElement | null>;
+  reservoirs: Reservoir[];
+  loading: boolean;
+  error: Error | null;
+  selected: Reservoir | null;
+  onSelect: (r: Reservoir) => void;
+}
 
 export function ReservoirList({
   listRef,
@@ -10,11 +20,12 @@ export function ReservoirList({
   error,
   selected,
   onSelect,
-}) {
+}: ReservoirListProps) {
   const [query, setQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filtered = reservoirs.filter((r) =>
-    r.name.toLowerCase().includes(query.toLowerCase())
+    r.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -23,6 +34,7 @@ export function ReservoirList({
         className="reservoir-search-form"
         onSubmit={(e) => {
           e.preventDefault();
+          setSearchQuery(query);
         }}
       >
         <input
@@ -35,7 +47,6 @@ export function ReservoirList({
         <button
           type="submit"
           className="search-btn"
-          tabIndex={-1}
           aria-label="Поиск"
         >
           <img src={searchImg} alt="Поиск" />

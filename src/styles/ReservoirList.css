@@ -42,7 +42,7 @@
 }
 
 .reservoir-search {
-  width: 370px; /* вместо 371px */
+  width: 370px;
   height: 68px;
   background: #272A38;
   color: #fff;

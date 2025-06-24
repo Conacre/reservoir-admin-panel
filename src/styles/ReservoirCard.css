@@ -56,6 +56,29 @@
   color: #fff;
 }
 
+.info-field input,
+.info-field select {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  height: 36px;
+  outline: none;
+  padding: 0 8px;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+.info-field input:focus,
+.info-field select:focus {
+  background: #232532;
+  border-radius: 2px;
+  outline: 1.5px solid #0089FF;
+}
+
 .icons {
   width: 45px;
   height: 45px;
@@ -65,6 +88,14 @@
   align-items: center;
   justify-content: center;
   margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.icons img {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+  display: block;
 }
 
 .units {
@@ -139,7 +170,7 @@
   line-height: 45px;
   letter-spacing: 0;
   text-align: center;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   transition: background 0.2s,
 }
@@ -185,8 +216,8 @@
   margin-left: auto;
   position: relative;
   display: inline-block;
-  width: 22px;    /* длина овала */
-  height: 14px;   /* высота по кружку */
+  width: 22px;
+  height: 14px;
   transform: rotate(-180deg);
 }
 
@@ -199,7 +230,7 @@
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 2px;           /* чтобы овал был по центру относительно кружка */
+  top: 2px;
   width: 22px;
   height: 10px;
   background: #0089FF;
@@ -213,10 +244,10 @@
   content: "";
   height: 14px;
   width: 14px;
-  left: -1px;         /* чтобы кружок был по левому краю овала */
-  top: -2px;          /* чтобы кружок был по центру относительно овала */
+  left: -1px;
+  top: -2px;
   background-color: #fff;
-  border: 1px solid #D7E2F2;
+  border: 1px solid #ffffff;
   border-radius: 50%;
   transition: .4s;
   box-sizing: border-box;
@@ -228,5 +259,71 @@
 }
 
 .switch input:checked + .slider:before {
-  transform: translateX(9px); /* сдвиг кружка вправо */
+  transform: translateX(9px);
 }
+
+.info-field-view {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  width: 100%;
+  font-size: 18px;
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.edit-name-actions {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  transition: background 0.2s;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  justify-content: center;
+  background-clip: padding-box;
+}
+
+/* Квадратный фон для кнопок */
+.icon-btn {
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: #0089FF;
+}
+
+.icon-btn img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.icon-btn[title="Сохранить"] {
+  background: #303549;
+}
+
+
+
+
+
+
+
