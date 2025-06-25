@@ -29,15 +29,10 @@
   box-sizing: border-box;
 }
 
-/* Убрать стрелочки у input[type="number"] во всех браузерах */
 .info-field input[type="number"]::-webkit-outer-spin-button,
 .info-field input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-.info-field input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
 }
 
 .info-field-view {
@@ -123,15 +118,14 @@
   margin-top: 2px;
   z-index: 10;
   box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  padding: 7px 7px; /* 7px отступы со всех сторон */
+  padding: 7px 7px;
   display: flex;
   flex-direction: column;
   max-height: 220px;
-  overflow-y: scroll; /* всегда показывать скроллбар */
+  overflow-y: scroll;
   box-sizing: border-box;
 }
 
-/* Кнопка-опция */
 .custom-select-option {
   color: #fff;
   font-size: 18px;
@@ -150,12 +144,10 @@
   align-items: center;
 }
 
-/* Последняя опция без нижнего отступа */
 .custom-select-option:last-child {
   margin-bottom: 0;
 }
 
-/* Выбранная и при наведении */
 .custom-select-option.selected {
   background: #0089FF;
   color: #fff;
@@ -165,17 +157,16 @@
   color: #fff;
 }
 
-/* Кастомный скроллбар внутри выпадающего */
 .custom-select-dropdown::-webkit-scrollbar {
   width: 8px;
   background: #272A38;
 }
 
 .custom-select-dropdown::-webkit-scrollbar-thumb {
-  background: #303549;           /* цвет ползунка */
+  background: #303549;
   border-radius: 8px;
-  min-height: 24px;              /* минимальная высота для видимости */
-  border: 2px solid #272A38;     /* чтобы не было стрелок и фон был чистым */
+  min-height: 24px;
+  border: 2px solid #272A38;
 }
 
 .custom-select-dropdown::-webkit-scrollbar-thumb:vertical {
@@ -187,10 +178,4 @@
   height: 0;
   width: 0;
   background: transparent;
-}
-
-/* Для Firefox */
-.custom-select-dropdown {
-  scrollbar-width: thin;
-  scrollbar-color: #303549 #272A38;
 }

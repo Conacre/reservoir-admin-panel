@@ -40,7 +40,7 @@ export function ReservoirCard({
   const [isEditingName, setIsEditingName] = useState(false);
   const [hoverName, setHoverName] = useState(false);
   const [tempName, setTempName] = useState(reservoir?.name || "");
-  const [unit, setUnit] = useState<'tons' | 'percent'>('tons'); // новое состояние
+  const [unit, setUnit] = useState<'tons' | 'percent'>('tons'); 
 
   React.useEffect(() => {
     setEditReservoir(reservoir);
@@ -91,7 +91,6 @@ export function ReservoirCard({
     }
   };
 
-  // вычисляем процент заполненности
   const percent =
     editReservoir.capacity > 0
       ? Math.round((editReservoir.volume / editReservoir.capacity) * 100)
@@ -222,9 +221,9 @@ export function ReservoirCard({
         value={
           unit === 'tons'
             ? editReservoir.volume
-            : `${percent}%` // добавляем % к числу при выборе процентов
+            : `${percent}%`
         }
-        editable={isEditable && unit === 'tons'} // редактировать только если выбраны тонны
+        editable={isEditable && unit === 'tons'}
         type="number"
         onChange={v => handleFieldChange("volume", v)}
       />
