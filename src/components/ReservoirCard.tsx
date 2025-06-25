@@ -7,6 +7,10 @@ import stuffImg from "../assets/stuff.svg";
 import volumeImg from "../assets/volume.svg";
 import lockiconImg from "../assets/lock-icon.svg";
 import "../styles/ReservoirCard.css";
+import "../styles/Actions.css";
+import "../styles/Units.css";
+import "../styles/LockStatus.css";
+import "../styles/EditNameActions.css";
 import { ConfirmModal } from "./ConfirmModal";
 import { ReservoirField } from "./ReservoirField";
 import galkaImg from "../assets/galka.svg";
@@ -28,13 +32,15 @@ export function ReservoirCard({
   onDelete,
   onToggleLock,
   products,
-}: ReservoirCardProps) {
+  showToast,
+}: ReservoirCardProps & { showToast: (msg: string, type?: "error" | "success" | "info") => void }) {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [editReservoir, setEditReservoir] = useState<Reservoir | null>(reservoir);
   const [isEditingName, setIsEditingName] = useState(false);
   const [hoverName, setHoverName] = useState(false);
   const [tempName, setTempName] = useState(reservoir?.name || "");
+  const [unit, setUnit] = useState<'tons' | 'percent'>('tons'); // новое состояние
 
   React.useEffect(() => {
     setEditReservoir(reservoir);
@@ -42,7 +48,6 @@ export function ReservoirCard({
   }, [reservoir]);
 
   if (!editReservoir) return null;
-
   const isEditable = !editReservoir.isLocked;
 
   const handleFieldChange = (field: keyof Reservoir, value: unknown) => {
@@ -68,6 +73,29 @@ export function ReservoirCard({
     handleFieldChange("name", tempName);
     setIsEditingName(false);
   };
+
+  const handleSave = () => {
+    onSave(editReservoir);
+  };
+
+  const handleDelete = async () => {
+    if (!editReservoir) return;
+    if (editReservoir.isLocked) {
+      showToast("Нельзя удалить заблокированный резервуар.", "error");
+      return;
+    }
+    try {
+      onDelete();
+    } catch (e) {
+      showToast("Ошибка удаления резервуара", "error");
+    }
+  };
+
+  // вычисляем процент заполненности
+  const percent =
+    editReservoir.capacity > 0
+      ? Math.round((editReservoir.volume / editReservoir.capacity) * 100)
+      : 0;
 
   return (
     <div className="reservoir-card">
@@ -174,20 +202,36 @@ export function ReservoirCard({
         onChange={v => handleFieldChange("capacity", v)}
       />
       <div className="units">
-        <span className="unit-one">ТОННЫ</span>
-        <span className="unit-two">%</span>
+        <span
+          className={`unit-one${unit === 'tons' ? ' selected' : ''}`}
+          onClick={() => setUnit('tons')}
+          style={{ cursor: "pointer" }}
+        >
+          ТОННЫ
+        </span>
+        <span
+          className={`unit-two${unit === 'percent' ? ' selected' : ''}`}
+          onClick={() => setUnit('percent')}
+          style={{ cursor: "pointer" }}
+        >
+          %
+        </span>
       </div>
       <ReservoirField
         icon={fullnessImg}
-        value={editReservoir.volume}
-        editable={isEditable}
+        value={
+          unit === 'tons'
+            ? editReservoir.volume
+            : `${percent}%` // добавляем % к числу при выборе процентов
+        }
+        editable={isEditable && unit === 'tons'} // редактировать только если выбраны тонны
         type="number"
         onChange={v => handleFieldChange("volume", v)}
       />
       <div className="actions">
   {isEditable && (
     <>
-      <button className="save-btn" onClick={() => onSave(editReservoir)}>
+      <button className="save-btn" onClick={handleSave}>
         Сохранить
       </button>
       <button className="cancel-btn" onClick={onCancel}>
@@ -230,10 +274,7 @@ export function ReservoirCard({
       />
       <ConfirmModal
         open={deleteConfirmOpen}
-        onConfirm={() => {
-          setDeleteConfirmOpen(false);
-          onDelete();
-        }}
+        onConfirm={handleDelete}
         onCancel={() => setDeleteConfirmOpen(false)}
         text="Вы действительно хотите удалить резервуар?"
       />

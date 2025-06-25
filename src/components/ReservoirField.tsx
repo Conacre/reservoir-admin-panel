@@ -1,3 +1,6 @@
+import { CustomSelect } from "./CustomSelect";
+import "./../styles/ReservoirField.css";
+
 export function ReservoirField({
   icon,
   value,
@@ -20,17 +23,18 @@ export function ReservoirField({
       </span>
       {editable ? (
         options ? (
-          <select value={value} onChange={e => onChange?.(e.target.value)}>
-            {options.map(opt => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
-            ))}
-          </select>
+          <div style={{ position: "relative", width: "100%" }}>
+            <CustomSelect
+              value={value}
+              options={options}
+              onChange={onChange!}
+            />
+          </div>
         ) : (
           <input
             type={type}
             value={value}
             onChange={e => onChange?.(e.target.value)}
-            min={type === "number" ? 0 : undefined}
           />
         )
       ) : (

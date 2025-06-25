@@ -8,7 +8,6 @@ interface ReservoirListProps {
   listRef: React.RefObject<HTMLUListElement | null>;
   reservoirs: Reservoir[];
   loading: boolean;
-  error: Error | null;
   selected: Reservoir | null;
   onSelect: (r: Reservoir) => void;
 }
@@ -17,11 +16,9 @@ export function ReservoirList({
   listRef,
   reservoirs,
   loading,
-  error,
   selected,
   onSelect,
 }: ReservoirListProps) {
-  const [query, setQuery] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filtered = reservoirs.filter((r) =>
@@ -32,17 +29,14 @@ export function ReservoirList({
     <div className="reservoir-list-container">
       <form
         className="reservoir-search-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          setSearchQuery(query);
-        }}
+        onSubmit={(e) => e.preventDefault()}
       >
         <input
           className="reservoir-search"
           type="text"
           placeholder="Список резервуаров"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <button
           type="submit"
@@ -54,12 +48,10 @@ export function ReservoirList({
       </form>
       <ul className="reservoir-list" ref={listRef}>
         {loading && <li className="empty">Загрузка...</li>}
-        {error && <li className="empty">Ошибка: {error.message}</li>}
-        {!loading && !error && filtered.length === 0 && (
+        {!loading && filtered.length === 0 && (
           <li className="empty">Ничего не найдено</li>
         )}
         {!loading &&
-          !error &&
           filtered.map((r) => (
             <li
               key={r.id}

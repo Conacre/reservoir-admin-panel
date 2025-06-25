@@ -1,0 +1,54 @@
+.btn, .save-btn, .cancel-btn, .delete-btn, .icon-btn, .nav-btn {
+  font-family: var(--font);
+  border-radius: var(--radius);
+  transition: var(--transition);
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-btn {
+  background: var(--primary);
+  width: 232px;
+}
+
+.cancel-btn {
+  background: var(--secondary);
+  opacity: 0.5;
+  width: 249px;
+}
+
+.delete-btn {
+  background: var(--secondary);
+  width: 485px;
+  margin: 5px auto 17px auto;
+}
+
+.icon-btn {
+  background: var(--primary);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin: 0 2px;
+}
+
+.icon-btn[title="Сохранить"] {
+  background: var(--secondary);
+}
+
+.nav-btn {
+  background: var(--secondary);
+  border-radius: 4px;
+  font-size: 14px;
+  height: 40px;
+  padding: 0 1rem;
+}
+
+.nav-btn:hover {
+  background: #393d51;
+}

@@ -1,0 +1,44 @@
+.edit-name-actions {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  transition: background 0.2s;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  justify-content: center;
+  background-clip: padding-box;
+}
+
+.icon-btn {
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: #0089FF;
+}
+
+.icon-btn img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.icon-btn[title="Сохранить"] {
+  background: #303549;
+}

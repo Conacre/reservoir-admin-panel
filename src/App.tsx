@@ -13,6 +13,8 @@ import {
 } from "./services/reservoirs";
 import { useReservoirContext } from "./context/Context";
 import { Reservoir } from "./types";
+import { Toast, ToastProps } from "./components/Toast";
+import { validateReservoir } from "./utils/validateReservoir";
 
 function App() {
   const {
@@ -27,6 +29,7 @@ function App() {
   } = useReservoirContext();
 
   const [products, setProducts] = useState<{ id: number; name: string }[]>([]);
+  const [toasts, setToasts] = useState<ToastProps[]>([]);
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -68,7 +71,28 @@ function App() {
     });
   };
 
+  const showToast = (message: string, type: ToastProps["type"] = "info") => {
+    setToasts((prev) => [...prev, { message, type, onClose: () => {} }]);
+  };
+
+  useEffect(() => {
+    if (toasts.length > 0) {
+      setToasts((prev) =>
+        prev.map((t, i) =>
+          i === 0
+            ? { ...t, onClose: () => setToasts((p) => p.slice(1)) }
+            : t
+        )
+      );
+    }
+  }, [toasts.length]);
+
   const handleSave = async (reservoir: Reservoir) => {
+    const errorMsg = validateReservoir(reservoir, reservoirs, products);
+    if (errorMsg) {
+      showToast(errorMsg, "error");
+      return;
+    }
     setLoading(true);
     try {
       const productId = products.find(
@@ -97,6 +121,7 @@ function App() {
       setError(null);
     } catch (e) {
       setError(e instanceof Error ? e : new Error("Ошибка сохранения"));
+      showToast(e instanceof Error ? e.message : "Ошибка сохранения", "error");
     } finally {
       setLoading(false);
     }
@@ -138,7 +163,10 @@ function App() {
 
   return (
     <div>
-      <Header onAddReservoir={handleAddReservoir} />
+      <Header
+        onAddReservoir={handleAddReservoir}
+        onScreenClick={() => showToast("Я так и не понял смысл этой кнопки :)")}
+      />
       <ReservoirList
         listRef={listRef}
         reservoirs={reservoirs}
@@ -156,8 +184,14 @@ function App() {
           onDelete={handleDelete}
           onToggleLock={handleToggleLock}
           products={products}
+          showToast={showToast}
         />
       )}
+      <div className="toast-container">
+        {toasts.map((toast, i) => (
+          <Toast key={i} {...toast} />
+        ))}
+      </div>
     </div>
   );
 }

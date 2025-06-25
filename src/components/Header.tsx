@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import '../styles/Header.css'
 import AdmPanelIcon from '../assets/adm_panel_icon.svg'
 
-export function Header({ onAddReservoir }: { onAddReservoir: () => void }) {
+export function Header({ onAddReservoir, onScreenClick }: { onAddReservoir: () => void; onScreenClick: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599)
 
@@ -29,7 +29,9 @@ export function Header({ onAddReservoir }: { onAddReservoir: () => void }) {
       </div>
       {!isMobile && (
         <nav>
-          <a href="#" className="nav-btn">Экран резервуаров</a>
+          <button type="button" className="nav-btn" onClick={onScreenClick}>
+            Экран резервуаров
+          </button>
         </nav>
       )}
       {isMobile && (

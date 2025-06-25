@@ -1,0 +1,43 @@
+.units {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin: 20px 43px 5px;
+  gap: 10px;
+}
+
+.unit-one, .unit-two {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text);
+  border-radius: var(--radius);
+}
+
+.unit-one {
+  width: 94.5px;
+  height: 33px;
+  background: var(--primary);
+}
+
+.unit-two {
+  width: 33px;
+  height: 33px;
+  background: var(--secondary);
+}
+
+.unit-one.selected {
+  background: var(--primary);
+}
+.unit-two.selected {
+  background: var(--primary);
+}
+.unit-one:not(.selected) {
+  background: var(--secondary);
+}
+.unit-two:not(.selected) {
+  background: var(--secondary);
+}

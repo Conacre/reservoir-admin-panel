@@ -1,17 +1,35 @@
-html, body {
+:root {
+  --main-bg: #232532;
+  --field-bg: #272a38;
+  --primary: #0089FF;
+  --secondary: #303549;
+  --danger: #FF3B30;
+  --text: #fff;
+  --radius: 2px;
+  --transition: background 0.2s, color 0.2s;
+  --font: Roboto, sans-serif;
+}
+
+body, html {
   background: #1B1E27;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  font-family: var(--font);
+  color: var(--text);
 }
 
 b {
-  font-family: Roboto, sans-serif;
+  font-family: var(--font);
   font-weight: 400;
   font-size: 18px;
-  line-height: 16px;
-  letter-spacing: 0;
-  color: #fff;
-  padding-left: 0;
-  box-sizing: border-box;
+  color: var(--text);
+}
+
+input, button, select {
+  font-family: var(--font);
+  border-radius: var(--radius);
+  color: var(--text);
+  outline: none;
+  border: none;
+  transition: var(--transition);
 }

@@ -1,0 +1,56 @@
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px; 
+  margin: 5px auto 0 auto;
+}
+
+.save-btn {
+  width: 232px;
+  height: 45px;
+  background: #0089FF;
+  border-radius: 2px;
+  border: none;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 45px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancel-btn {
+  width: 249px;
+  height: 45px;
+  background: #303549;
+  border-radius: 2px;
+  border: none;
+  opacity: 0.5;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 45px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delete-btn {
+  width: 485px;
+  height: 45px;
+  background: #303549;
+  border-radius: 2px;
+  border: none;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 45px;
+  color: #fff;
+  cursor: pointer;
+  margin: 5px auto 17px auto;
+  display: block;
+  transition: background 0.2s;
+}
